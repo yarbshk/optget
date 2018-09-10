@@ -1,4 +1,4 @@
-package com.github.yarbshk.optget.mod.processor;
+package com.github.yarbshk.optget.processor.mod;
 
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;
@@ -8,7 +8,7 @@ import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.VariableDeclarator;
 import com.github.javaparser.utils.SourceRoot;
 import org.apache.commons.text.WordUtils;
-import com.github.yarbshk.optget.mod.annotation.OptionalGetter;
+import com.github.yarbshk.optget.annotation.OptionalGetter;
 
 import javax.annotation.processing.*;
 import javax.lang.model.SourceVersion;
@@ -21,7 +21,7 @@ import java.util.Set;
 
 import static com.github.javaparser.ast.Modifier.PUBLIC;
 
-@SupportedAnnotationTypes("com.github.yarbshk.optget.mod.annotation.OptionalGetter")
+@SupportedAnnotationTypes("com.github.yarbshk.optget.annotation.OptionalGetter")
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
 public class OptionalGetterProcessor extends AbstractProcessor {
 

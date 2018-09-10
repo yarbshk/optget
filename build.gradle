@@ -14,7 +14,7 @@ plugins {
     id 'net.ltgt.apt-idea' version "0.18"
 }
 
-group 'app.optget.mod'
+group 'com.github.yarbshk.optget'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
@@ -24,6 +24,7 @@ repositories {
 }
 
 dependencies {
-    compile project(':og-mod-annotation')
+    compile project(':og-annotation')
+    annotationProcessor project(':og-ast-processor')
     annotationProcessor project(':og-mod-processor')
 }

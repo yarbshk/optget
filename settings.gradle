@@ -1,3 +1,4 @@
 rootProject.name = 'optget'
-include 'og-mod-annotation', 'og-mod-processor'
-
+include 'og-annotation'
+include 'og-mod-processor'
+include 'og-ast-processor'

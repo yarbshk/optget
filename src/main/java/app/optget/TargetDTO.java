@@ -1,6 +1,6 @@
 package app.optget;
 
-import com.github.yarbshk.optget.mod.annotation.OptionalGetter;
+import com.github.yarbshk.optget.annotation.OptionalGetter;
 
 @OptionalGetter
 public abstract class TargetDTO {
