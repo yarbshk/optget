@@ -1,7 +1,6 @@
-package com.github.yarbshk.optget.sample.mod;
+package com.github.yarbshk.optget.sample.ast;
 
 import com.github.yarbshk.optget.annotation.OptionalGetter;
-import java.util.Optional;
 
 @OptionalGetter
 public class TargetDTO {
@@ -10,9 +9,5 @@ public class TargetDTO {
 
     public TargetDTO(String field) {
         this.field = field;
-    }
-
-    public Optional<String> getField() {
-        return Optional.ofNullable(field);
     }
 }

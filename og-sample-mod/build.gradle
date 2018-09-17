@@ -16,7 +16,13 @@ dependencies {
     annotationProcessor project(':og-processor-mod')
 }
 
-// Required only when using with modules
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.github.yarbshk.optget.sample.mod.Application'
+    }
+}
+
+// Required by the annotation processor (only for modules)
 System.setProperty("optget.source.path", String.join(":",
     projectDir.getName() + "/src/main/java"
 ))

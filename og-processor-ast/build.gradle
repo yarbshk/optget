@@ -1,0 +1,23 @@
+plugins {
+    id 'java-library'
+}
+
+group 'com.github.yarbshk.optget'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'http://maven.nuiton.org/release/'
+    }
+}
+
+dependencies {
+    implementation project(':og-annotation')
+    implementation 'com.sun:tools:1.7.0.13'
+    implementation 'org.apache.commons:commons-lang3:3.7'
+    implementation 'org.projectlombok:lombok:1.14.8'
+    annotationProcessor 'org.projectlombok:lombok:1.14.8'
+}

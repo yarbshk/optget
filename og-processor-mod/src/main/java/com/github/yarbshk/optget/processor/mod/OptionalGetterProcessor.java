@@ -79,7 +79,7 @@ public class OptionalGetterProcessor extends AbstractProcessor {
     }
 
     /**
-     * Adds getter methods for each field variable if the such method doesn't exist yet.
+     * Adds getter methods for each field variable if such method doesn't exist yet.
      * @param field the declaration of a field in a class
      */
     private static void tryAddOptionalGetter(FieldDeclaration field) {
