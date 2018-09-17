@@ -1,12 +1,17 @@
-package com.github.yarbshk.optget.sample.ast;
+package com.github.yarbshk.optget.sample.run;
+
+import com.github.yarbshk.optget.processor.run.OptionalGetterAgent;
 
 import java.lang.reflect.Method;
 
 public class Application {
 
+    static {
+        OptionalGetterAgent.init();
+    }
+
     public static void main(String[] args) throws Exception {
-        // It isn't runnable from Intellij IDEA because it needs a plugin to run
-        TargetDTO targetDTO = new TargetDTO("Foo");
+        TargetDTO targetDTO = new TargetDTO("Bar");
         Method method = targetDTO.getClass().getMethod("getField");
         System.out.println("Result is: " + method.invoke(targetDTO));
     }

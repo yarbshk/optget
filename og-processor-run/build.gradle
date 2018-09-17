@@ -1,0 +1,33 @@
+plugins {
+    id 'java-library'
+}
+
+group 'com.github.yarbshk.optget'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'http://maven.nuiton.org/release/'
+    }
+}
+
+dependencies {
+    implementation project(':og-annotation')
+    implementation 'com.sun:tools:1.7.0.13'
+    implementation 'org.apache.commons:commons-lang3:3.7'
+    implementation 'org.ow2.asm:asm:6.2.1'
+}
+
+jar {
+    manifest {
+        attributes(
+                'Can-Redefine-Classes': true,
+                'Can-Retransform-Classes': true,
+                'Agent-Class': 'com.github.yarbshk.optget.processor.run.OptionalGetterAgent',
+                'Premain-Class': 'com.github.yarbshk.optget.processor.run.OptionalGetterAgent'
+        )
+    }
+}
