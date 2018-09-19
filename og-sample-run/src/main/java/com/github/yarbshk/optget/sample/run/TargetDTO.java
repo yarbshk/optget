@@ -5,9 +5,15 @@ import com.github.yarbshk.optget.annotation.OptionalGetter;
 @OptionalGetter
 public class TargetDTO {
 
-    private String field;
+    private String obj;
+    private boolean bool;
 
-    public TargetDTO(String field) {
-        this.field = field;
+    public TargetDTO(String obj, boolean bool) {
+        this.obj = obj;
+        this.bool = bool;
+    }
+
+    public String getObj() {
+        return obj;
     }
 }
