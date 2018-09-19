@@ -2,18 +2,22 @@ package com.github.yarbshk.optget.sample.ref;
 
 import com.github.yarbshk.optget.annotation.OptionalGetter;
 
-import java.util.Optional;
-
 @OptionalGetter
 public class TargetDTO {
 
-    private String field;
+    private Object obj;
 
-    public TargetDTO(String field) {
-        this.field = field;
+    private String str;
+
+    private boolean bool;
+
+    public TargetDTO(Object obj, String str, boolean bool) {
+        this.obj = obj;
+        this.str = str;
+        this.bool = bool;
     }
 
-    public Optional<String> getField() {
-        return Optional.ofNullable(field);
+    public String getStr() {
+        return str;
     }
 }

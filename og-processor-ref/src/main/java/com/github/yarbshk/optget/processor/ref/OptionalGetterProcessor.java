@@ -22,6 +22,7 @@ import javax.tools.Diagnostic;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
@@ -97,9 +98,14 @@ public class OptionalGetterProcessor extends AbstractProcessor {
     private static MethodDeclaration createOptionalGetter(VariableDeclarator variable) {
         MethodDeclaration method = new MethodDeclaration();
         method.setModifier(PUBLIC, true);
-        method.setType("Optional<" + variable.getTypeAsString() + ">");
-        method.setName("get" + StringUtils.capitalize(variable.getNameAsString()));
+        method.setType("Optional");
+        method.setName(toGetterName(variable));
         method.setBody(JavaParser.parseBlock("{return Optional.ofNullable(" + variable.getNameAsString() + ");}"));
         return method;
+    }
+
+    public static String toGetterName(VariableDeclarator variable) {
+        String prefix = Objects.equals(variable.getTypeAsString(), "boolean") ? "is" : "get";
+        return prefix + StringUtils.capitalize(variable.getNameAsString());
     }
 }

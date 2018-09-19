@@ -21,7 +21,10 @@ public class OptionalGetterHandler extends JavacAnnotationHandler<OptionalGetter
         JavacNode typeNode = annotationNode.up();
         for (JavacNode potentialField : typeNode.down()) { // Enumerate type children
             if (potentialField.getKind() != AST.Kind.FIELD) continue;
-            injectMethod(typeNode, createOptionalGetter(potentialField));
+            JCMethodDecl getter = createOptionalGetter(potentialField);
+            MemberExistsResult memberExistsResult = methodExists(getter.name.toString(), typeNode, 0);
+            if (memberExistsResult != MemberExistsResult.NOT_EXISTS) continue;
+            injectMethod(typeNode, getter);
         }
     }
 
