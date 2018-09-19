@@ -21,8 +21,3 @@ jar {
         attributes 'Main-Class': 'com.github.yarbshk.optget.sample.ref.Application'
     }
 }
-
-// Required by the annotation processor (only for modules)
-System.setProperty("optget.source.path", String.join(":",
-    projectDir.getName() + "/src/main/java"
-))

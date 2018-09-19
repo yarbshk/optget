@@ -1,7 +1,6 @@
 package com.github.yarbshk.optget.processor.ref;
 
 import com.github.javaparser.JavaParser;
-import com.github.javaparser.ParseProblemException;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.FieldDeclaration;
@@ -18,7 +17,6 @@ import javax.annotation.processing.SupportedSourceVersion;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
-import javax.tools.Diagnostic;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
@@ -45,23 +43,19 @@ public class OptionalGetterProcessor extends AbstractProcessor {
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
         for (Element element : roundEnv.getElementsAnnotatedWith(OptionalGetter.class)) {
             for (Path sourceRoot : getSourceRoots()) {
-                try {
-                    SourceRoot sr = new SourceRoot(sourceRoot);
-                    CompilationUnit cu = sr.parse(getPackageName(element), getSourceFileName(element));
-                    cu.findAll(FieldDeclaration.class)
-                            .forEach(OptionalGetterProcessor::tryAddOptionalGetter);
-                    sr.saveAll();
-                } catch (ParseProblemException e) {
-                    processingEnv.getMessager()
-                            .printMessage(Diagnostic.Kind.WARNING, e.getMessage());
-                }
+                SourceRoot sr = new SourceRoot(sourceRoot);
+                CompilationUnit cu = sr.parse(getPackageName(element), getSourceFileName(element));
+                cu.findAll(FieldDeclaration.class)
+                        .forEach(OptionalGetterProcessor::tryAddOptionalGetter);
+                sr.saveAll();
             }
         }
         return true;
     }
 
     private static Path[] getSourceRoots() {
-        String sourcePath = System.getProperty("optget.source.path", "src/main/java:src/test/java");
+        String sourcePath = Optional.ofNullable(System.getenv("OG_SRCPATH"))
+                .orElse("src/main/java:src/test/java");
         return Arrays.stream(sourcePath.split(":"))
                 .map(root -> Paths.get(root))
                 .toArray(Path[]::new);

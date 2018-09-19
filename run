@@ -1,0 +1,19 @@
+#!/bin/bash
+
+env_vars="$(<.env)"
+
+for env_var in ${env_vars}
+do
+    export ${env_var}
+done
+
+type=$1
+
+if [ -z "${type}" ]
+then
+    echo "Error: Processor type is required"
+    exit 1
+fi
+
+bash gradlew clean :og-processor-${type}:build :og-sample-${type}:build > /dev/null 2>&1
+java -jar og-sample-${type}/build/libs/og-sample-${type}-1.0-SNAPSHOT.jar

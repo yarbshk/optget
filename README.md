@@ -17,8 +17,10 @@ There are a few implementations of the processors called _processor types_:
 Run a standalone sample project JAR:
 
 ```
-$ ./gradlew clean build
-$ java -jar og-sample-<TYPE>/build/libs/og-sample-<TYPE>-1.0-SNAPSHOT.jar
+$ ./run <TYPE>
 ```
 
 ...where `<TYPE>` is meant one of the [processor types](#processor-types).
+
+## Troubleshooting
+* `java.lang.IllegalArgumentException: Only directories are allowed as root path: src/main/java` - provide an `OG_SRCPATH` environment variable to specify root directories of sets of source files separated by colons (e.g. `og-sample-ref/src/main/java:og-sample-ref/src/test/java`).
