@@ -10,6 +10,7 @@ There are a few implementations of the processors called _processor types_:
 ## Requirements
 * set the getter method name according to the type of a field generated for (`is` prefix for `boolean` types and `get` one for any other types);
 * avoid generating a getter method if one is already exists;
+* use the `ofNullable` method for nullable values and `of` for non-null ones;
 * make a generated getter method accessible at least through the Reflection API.
 
 ## Getting started

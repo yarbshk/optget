@@ -2,6 +2,7 @@ package lombok.javac.handlers;
 
 import com.github.yarbshk.optget.annotation.OptionalGetter;
 import com.sun.tools.javac.code.Flags;
+import com.sun.tools.javac.code.Type;
 import com.sun.tools.javac.tree.JCTree.*;
 import com.sun.tools.javac.util.List;
 import com.sun.tools.javac.util.Name;
@@ -18,14 +19,24 @@ public class OptionalGetterHandler extends JavacAnnotationHandler<OptionalGetter
     @Override
     public void handle(AnnotationValues<OptionalGetter> annotation, JCAnnotation ast, JavacNode annotationNode) {
         deleteAnnotationIfNeccessary(annotationNode, OptionalGetter.class);
-        JavacNode typeNode = annotationNode.up();
-        for (JavacNode potentialField : typeNode.down()) { // Enumerate type children
-            if (potentialField.getKind() != AST.Kind.FIELD) continue;
-            JCMethodDecl getter = createOptionalGetter(potentialField);
-            MemberExistsResult memberExistsResult = methodExists(getter.name.toString(), typeNode, 0);
-            if (memberExistsResult != MemberExistsResult.NOT_EXISTS) continue;
-            injectMethod(typeNode, getter);
+        for (JavacNode potentialField : annotationNode.up().down()) {
+            if (potentialField.getKind() == AST.Kind.FIELD) {
+                tryAddOptionalGetter(potentialField);
+            }
         }
+    }
+
+    private static void tryAddOptionalGetter(JavacNode fieldNode) {
+        JCMethodDecl optionalGetter = createOptionalGetter(fieldNode);
+        JavacNode typeNode = fieldNode.up();
+        if (!isMethodExist(optionalGetter, typeNode)) {
+            injectMethod(typeNode, optionalGetter);
+        }
+    }
+
+    private static boolean isMethodExist(JCMethodDecl method, JavacNode typeNode) {
+        return !methodExists(method.name.toString(), typeNode, -1)
+                .equals(MemberExistsResult.NOT_EXISTS);
     }
 
     private static JCMethodDecl createOptionalGetter(JavacNode fieldNode) {
@@ -38,11 +49,17 @@ public class OptionalGetterHandler extends JavacAnnotationHandler<OptionalGetter
         List<JCVariableDecl>  params   = List.nil();
         List<JCExpression>    thrown   = List.nil();
 
-        JCExpression ofNullable = genTypeRef(fieldNode, "java.util.Optional.ofNullable");
+        String factoryMethodName = getOptionalFactoryMethodName(((JCVariableDecl)fieldNode.get()).vartype.type);
+        JCExpression factoryMethod = genTypeRef(fieldNode, factoryMethodName);
         List<JCExpression> args = List.of(genTypeRef(fieldNode, fieldNode.getName()));
-        JCMethodInvocation invocation = treeMaker.Apply(List.nil(), ofNullable, args);
+        JCMethodInvocation invocation = treeMaker.Apply(List.nil(), factoryMethod, args);
         JCBlock body = treeMaker.Block(0, List.of(treeMaker.Return(invocation)));
 
         return treeMaker.MethodDef(mods, name, resType, typarams, params, thrown, body, null);
+    }
+
+    private static String getOptionalFactoryMethodName(Type type) {
+        String factoryMethodName = type.isPrimitive() ? "of" : "ofNullable";
+        return String.format("java.util.Optional.%s", factoryMethodName);
     }
 }

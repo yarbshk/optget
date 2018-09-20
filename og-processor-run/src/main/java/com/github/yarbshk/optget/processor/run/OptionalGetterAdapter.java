@@ -4,6 +4,7 @@ import com.github.yarbshk.optget.annotation.OptionalGetter;
 import org.apache.commons.lang3.StringUtils;
 import org.objectweb.asm.*;
 
+import java.lang.reflect.Field;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -55,7 +56,8 @@ public class OptionalGetterAdapter extends ClassVisitor {
         // Invoke a static method and puts the result onto the stack
         String optional = Type.getInternalName(Optional.class);
         String optionalSignature = "(" + Type.getDescriptor(Object.class) + ")" + optionalDescriptor;
-        mv.visitMethodInsn(INVOKESTATIC, optional, "ofNullable", optionalSignature, false);
+        String factoryMethodName = getOptionalFactoryMethodName(descriptor);
+        mv.visitMethodInsn(INVOKESTATIC, optional, factoryMethodName, optionalSignature, false);
         // Return an optional object of the value
         mv.visitInsn(ARETURN);
         mv.visitMaxs(1, 1);
@@ -101,5 +103,19 @@ public class OptionalGetterAdapter extends ClassVisitor {
         String owner = Type.getInternalName(aClass);
         String descriptor = String.format("(%s)%s", primitiveDesc, Type.getDescriptor(aClass));
         mv.visitMethodInsn(INVOKESTATIC, owner, "valueOf", descriptor, false);
+    }
+
+    private static String getOptionalFactoryMethodName(String descriptor) {
+        return isPrimitive(descriptor) ? "of" : "ofNullable";
+    }
+
+    private static boolean isPrimitive(String descriptor) {
+        try {
+            Field field = Type.class.getDeclaredField("PRIMITIVE_DESCRIPTORS");
+            field.setAccessible(true);
+            return field.get(null).toString().contains(descriptor);
+        } catch (IllegalAccessException | NoSuchFieldException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

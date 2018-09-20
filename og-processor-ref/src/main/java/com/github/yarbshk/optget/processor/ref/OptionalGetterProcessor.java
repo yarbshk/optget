@@ -6,6 +6,7 @@ import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.FieldDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.VariableDeclarator;
+import com.github.javaparser.ast.type.Type;
 import com.github.javaparser.utils.SourceRoot;
 import com.github.yarbshk.optget.annotation.OptionalGetter;
 import org.apache.commons.lang3.StringUtils;
@@ -94,12 +95,19 @@ public class OptionalGetterProcessor extends AbstractProcessor {
         method.setModifier(PUBLIC, true);
         method.setType("Optional");
         method.setName(toGetterName(variable));
-        method.setBody(JavaParser.parseBlock("{return Optional.ofNullable(" + variable.getNameAsString() + ");}"));
+        method.setBody(JavaParser.parseBlock(String.format("{return %s(%s);}",
+                getOptionalFactoryMethodName(variable.getType()),
+                variable.getNameAsString())));
         return method;
     }
 
-    public static String toGetterName(VariableDeclarator variable) {
+    private static String toGetterName(VariableDeclarator variable) {
         String prefix = Objects.equals(variable.getTypeAsString(), "boolean") ? "is" : "get";
         return prefix + StringUtils.capitalize(variable.getNameAsString());
+    }
+
+    private static String getOptionalFactoryMethodName(Type type) {
+        String factoryMethodName = type.isPrimitiveType() ? "of" : "ofNullable";
+        return String.format("Optional.%s", factoryMethodName);
     }
 }
