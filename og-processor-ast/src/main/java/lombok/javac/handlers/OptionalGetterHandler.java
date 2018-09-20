@@ -34,11 +34,6 @@ public class OptionalGetterHandler extends JavacAnnotationHandler<OptionalGetter
         }
     }
 
-    private static boolean isMethodExist(JCMethodDecl method, JavacNode typeNode) {
-        return !methodExists(method.name.toString(), typeNode, -1)
-                .equals(MemberExistsResult.NOT_EXISTS);
-    }
-
     private static JCMethodDecl createOptionalGetter(JavacNode fieldNode) {
         JavacTreeMaker treeMaker = fieldNode.getTreeMaker();
 
@@ -61,5 +56,10 @@ public class OptionalGetterHandler extends JavacAnnotationHandler<OptionalGetter
     private static String getOptionalFactoryMethodName(Type type) {
         String factoryMethodName = type.isPrimitive() ? "of" : "ofNullable";
         return String.format("java.util.Optional.%s", factoryMethodName);
+    }
+
+    private static boolean isMethodExist(JCMethodDecl method, JavacNode typeNode) {
+        return !methodExists(method.name.toString(), typeNode, -1)
+                .equals(MemberExistsResult.NOT_EXISTS);
     }
 }

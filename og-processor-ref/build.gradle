@@ -11,8 +11,6 @@ repositories {
     mavenCentral()
 }
 
-buildDir
-
 dependencies {
     implementation project(':og-annotation')
     implementation 'com.github.javaparser:javaparser-core:3.6.14'

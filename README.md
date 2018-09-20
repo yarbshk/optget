@@ -1,5 +1,5 @@
 # OptGet
-A set of processors each of its **generates getter methods**  that wrap a returned value by `java.util.Optional` for fields without of any accessor. Designed for informational and/or testing purposes and are used mainly on DTOs.
+A set of annotation processors each of its **generates getter methods**  that wrap a returned value by `java.util.Optional` for fields without of any accessor. Designed for informational and/or testing purposes and are used mainly on DTOs.
 
 ## Processor types
 There are a few implementations of the processors called _processor types_:
