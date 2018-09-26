@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+dependencies {
+    implementation project(':og-annotation')
+    implementation project(':og-processors:run')
+}
+
+jar {
+    from configurations.implementation.collect {
+        it.isDirectory() ? it : zipTree(it)
+    }
+}
+
+mainClassName = 'com.github.yarbshk.optget.apps.run.Application'
+
+jar.manifest.attributes('Main-Class': mainClassName)

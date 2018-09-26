@@ -13,5 +13,5 @@ do
     export $env_var
 done
 
-bash gradlew clean :og-processor-${type}:build :og-sample-${type}:build > /dev/null 2>&1
-java -jar og-sample-${type}/build/libs/og-sample-${type}-1.0-SNAPSHOT.jar
+bash gradlew clean :og-processors:${type}:build :og-apps:sample-${type}:build > /dev/null 2>&1
+java -jar og-apps/sample-${type}/build/libs/sample-${type}-1.0-SNAPSHOT.jar

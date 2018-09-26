@@ -1,0 +1,13 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+dependencies {
+    implementation project(':og-annotation')
+    annotationProcessor project(':og-processors:ast')
+}
+
+mainClassName = 'com.github.yarbshk.optget.apps.ast.Application'
+
+jar.manifest.attributes('Main-Class': mainClassName)

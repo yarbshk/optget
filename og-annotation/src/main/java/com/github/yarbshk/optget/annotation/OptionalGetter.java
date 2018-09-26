@@ -5,7 +5,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-// NOTE: The ASM library (see the og-processor-run module) works during runtime,
+// NOTE: The ASM library (see the :og-processors:run module) works during runtime,
 // therefore it's required to set the retention policy to RUNTIME instead of SOURCE
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)

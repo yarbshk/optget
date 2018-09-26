@@ -1,0 +1,21 @@
+plugins {
+    id 'java-library'
+}
+
+dependencies {
+    implementation project(':og-annotation')
+    implementation 'com.sun:tools:1.7.0.13'
+    implementation 'org.apache.commons:commons-lang3:3.7'
+    implementation 'org.ow2.asm:asm:6.2.1'
+}
+
+jar {
+    manifest {
+        attributes(
+                'Can-Redefine-Classes': true,
+                'Can-Retransform-Classes': true,
+                'Agent-Class': 'com.github.yarbshk.optget.processors.run.OptionalGetterAgent',
+                'Premain-Class': 'com.github.yarbshk.optget.processors.run.OptionalGetterAgent'
+        )
+    }
+}

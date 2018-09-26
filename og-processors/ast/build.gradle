@@ -1,0 +1,10 @@
+plugins {
+    id 'java-library'
+}
+
+dependencies {
+    annotationProcessor 'org.projectlombok:lombok:1.14.8'
+    implementation project(':og-annotation')
+    implementation 'com.sun:tools:1.7.0.13'
+    implementation 'org.projectlombok:lombok:1.14.8'
+}
