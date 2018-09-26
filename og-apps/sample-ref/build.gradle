@@ -9,5 +9,3 @@ dependencies {
 }
 
 mainClassName = 'com.github.yarbshk.optget.apps.ref.Application'
-
-jar.manifest.attributes('Main-Class': mainClassName)

@@ -1,4 +1,4 @@
-package com.github.yarbshk.optget.apps.run;
+package com.github.yarbshk.optget.apps.byt;
 
 import com.github.yarbshk.optget.annotation.OptionalGetter;
 

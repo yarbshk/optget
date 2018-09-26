@@ -1,4 +1,4 @@
 rootProject.name = 'optget'
 include 'og-annotation'
-include 'og-apps:sample-ast', 'og-apps:sample-ref', 'og-apps:sample-run'
-include 'og-processors:ast', 'og-processors:ref', 'og-processors:run'
+include 'og-apps:sample-ast', 'og-apps:sample-byt', 'og-apps:sample-ref'
+include 'og-processors:ast', 'og-processors:byt', 'og-processors:ref'

@@ -14,8 +14,8 @@ jar {
         attributes(
                 'Can-Redefine-Classes': true,
                 'Can-Retransform-Classes': true,
-                'Agent-Class': 'com.github.yarbshk.optget.processors.run.OptionalGetterAgent',
-                'Premain-Class': 'com.github.yarbshk.optget.processors.run.OptionalGetterAgent'
+                'Agent-Class': 'com.github.yarbshk.optget.processors.byt.OptionalGetterAgent',
+                'Premain-Class': 'com.github.yarbshk.optget.processors.byt.OptionalGetterAgent'
         )
     }
 }

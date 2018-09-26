@@ -1,4 +1,4 @@
-package com.github.yarbshk.optget.processors.run;
+package com.github.yarbshk.optget.processors.byt;
 
 import com.github.yarbshk.optget.annotation.OptionalGetter;
 import org.apache.commons.lang3.StringUtils;
@@ -16,7 +16,7 @@ public class OptionalGetterAdapter extends ClassVisitor {
     private boolean isAnnotationPresent;
 
     public OptionalGetterAdapter(ClassVisitor cv) {
-        super(ASM4, cv);
+        super(ASM5, cv);
     }
 
     @Override

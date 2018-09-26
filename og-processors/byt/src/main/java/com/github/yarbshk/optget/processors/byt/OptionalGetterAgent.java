@@ -1,4 +1,4 @@
-package com.github.yarbshk.optget.processors.run;
+package com.github.yarbshk.optget.processors.byt;
 
 import java.lang.instrument.Instrumentation;
 
