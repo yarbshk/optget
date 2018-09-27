@@ -21,8 +21,8 @@ Run a standalone sample project JAR (the bash script populates just a set of env
 $ ./run <TYPE>
 ```
 
-...where `<TYPE>` is meant one of the [processor types](#processor-types).
+...where `<TYPE>` is meant one of the [processor types](#processor-types) (e.g. `$ ./run ast`).
 
 ## Troubleshooting
-* `java.lang.IllegalArgumentException: Only directories are allowed as root path: src/main/java` - provide an `OG_SRCPATH` environment variable to specify root directories of sets of source files separated by colons if many (e.g. `og-sample-ref/src/main/java`).
-* `com.sun.tools.attach.AgentLoadException: Agent JAR not found or no Agent-Class attribute` - provide an `OG_JARPATH` environment variable to specify path to a jarfile that contains a Java agent (e.g. `og-processor-run/build/libs/og-processor-run-1.0-SNAPSHOT.jar`).
+* `java.lang.IllegalArgumentException: Only directories are allowed as root path: src/main/java` - provide an `OG_SRCPATH` environment variable to specify root directories of sets of source files separated by colons if many (e.g. `og-apps/sample-ref/src/main/java`).
+* `com.sun.tools.attach.AgentLoadException: Agent JAR not found or no Agent-Class attribute` - provide an `OG_JARPATH` environment variable to specify path to a jarfile that contains a Java agent (e.g. `optget/og-processors/byt/build/libs/byt-1.0-SNAPSHOT.jar`).

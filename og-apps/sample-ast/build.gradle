@@ -4,8 +4,9 @@ plugins {
 }
 
 dependencies {
-    implementation project(':og-annotation')
     annotationProcessor project(':og-processors:ast')
+    implementation project(':og-annotation')
+    implementation project(':og-commons')
 }
 
 mainClassName = 'com.github.yarbshk.optget.apps.ast.Application'
