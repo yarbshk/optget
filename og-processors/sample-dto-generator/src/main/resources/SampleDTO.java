@@ -1,9 +1,9 @@
-package com.github.yarbshk.optget.apps.byt;
+// The processor resolves and inserts "import package.name;" automatically
 
 import com.github.yarbshk.optget.annotation.OptionalGetter;
 
 @OptionalGetter
-public class TargetDTO {
+public class SampleDTO {
 
     private Object obj;
     private String str;

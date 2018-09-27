@@ -1,4 +1,4 @@
-package com.github.yarbshk.optget.apps.ast;
+package com.github.yarbshk.optget.apps.smplbyt;
 
 import com.github.yarbshk.optget.annotation.OptionalGetter;
 

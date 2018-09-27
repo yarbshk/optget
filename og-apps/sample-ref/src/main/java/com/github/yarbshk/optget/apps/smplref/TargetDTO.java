@@ -1,4 +1,4 @@
-package com.github.yarbshk.optget.apps.ref;
+package com.github.yarbshk.optget.apps.smplref;
 
 import com.github.yarbshk.optget.annotation.OptionalGetter;
 import java.util.Optional;

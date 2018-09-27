@@ -9,4 +9,4 @@ dependencies {
     implementation project(':og-commons')
 }
 
-mainClassName = 'com.github.yarbshk.optget.apps.ref.Application'
+mainClassName = 'com.github.yarbshk.optget.apps.smplref.Application'

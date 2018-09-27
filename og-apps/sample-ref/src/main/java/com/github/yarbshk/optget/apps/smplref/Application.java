@@ -1,7 +1,10 @@
-package com.github.yarbshk.optget.apps.ref;
+package com.github.yarbshk.optget.apps.smplref;
+
+import com.github.yarbshk.optget.annotation.GenerateSample;
 
 import static com.github.yarbshk.optget.commons.ReflectionUtils.listObjectFields;
 
+@GenerateSample
 public class Application {
 
     public static void main(String[] args) throws Exception {

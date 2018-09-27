@@ -9,4 +9,4 @@ dependencies {
     implementation project(':og-processors:byt')
 }
 
-mainClassName = 'com.github.yarbshk.optget.apps.byt.Application'
+mainClassName = 'com.github.yarbshk.optget.apps.smplbyt.Application'

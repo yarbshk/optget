@@ -1,6 +1,8 @@
 rootProject.name = 'optget'
-include 'og-annotation'
-include 'og-apps:sample-ast', 'og-apps:sample-byt', 'og-apps:sample-ref'
-include 'og-processors:ast', 'og-processors:byt', 'og-processors:ref'
+
 include 'og-commons'
+include 'og-annotation'
+include 'og-processors:ast', 'og-processors:byt', 'og-processors:ref'
+include 'og-processors:sample-dto-generator'
+include 'og-apps:sample-ast', 'og-apps:sample-byt', 'og-apps:sample-ref'
 
