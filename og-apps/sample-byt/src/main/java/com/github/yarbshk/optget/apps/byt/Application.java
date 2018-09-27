@@ -2,7 +2,7 @@ package com.github.yarbshk.optget.apps.byt;
 
 import com.github.yarbshk.optget.processors.byt.OptionalGetterAgent;
 
-import static com.github.yarbshk.optget.commons.LaunchUtils.listObjectFields;
+import static com.github.yarbshk.optget.commons.ReflectionUtils.listObjectFields;
 
 public class Application {
 

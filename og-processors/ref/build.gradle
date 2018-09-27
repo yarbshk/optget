@@ -4,6 +4,6 @@ plugins {
 
 dependencies {
     implementation project(':og-annotation')
+    implementation project(':og-commons')
     implementation 'com.github.javaparser:javaparser-core:3.6.14'
-    implementation 'org.apache.commons:commons-lang3:3.7'
 }

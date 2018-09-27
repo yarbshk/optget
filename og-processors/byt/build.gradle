@@ -4,8 +4,8 @@ plugins {
 
 dependencies {
     implementation project(':og-annotation')
+    implementation project(':og-commons')
     implementation 'com.sun:tools:1.7.0.13'
-    implementation 'org.apache.commons:commons-lang3:3.7'
     implementation 'org.ow2.asm:asm:6.2.1'
 }
 

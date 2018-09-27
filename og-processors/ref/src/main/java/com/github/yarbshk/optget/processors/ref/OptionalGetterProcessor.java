@@ -9,7 +9,6 @@ import com.github.javaparser.ast.body.VariableDeclarator;
 import com.github.javaparser.ast.type.Type;
 import com.github.javaparser.utils.SourceRoot;
 import com.github.yarbshk.optget.annotation.OptionalGetter;
-import org.apache.commons.lang3.StringUtils;
 
 import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.RoundEnvironment;
@@ -26,6 +25,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import static com.github.javaparser.ast.Modifier.PUBLIC;
+import static com.github.yarbshk.optget.commons.ProcessorUtils.buildGetterName;
 
 @SupportedAnnotationTypes("com.github.yarbshk.optget.annotation.OptionalGetter")
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
@@ -102,8 +102,8 @@ public class OptionalGetterProcessor extends AbstractProcessor {
     }
 
     private static String toGetterName(VariableDeclarator variable) {
-        String prefix = Objects.equals(variable.getTypeAsString(), "boolean") ? "is" : "get";
-        return prefix + StringUtils.capitalize(variable.getNameAsString());
+        boolean logical = Objects.equals(variable.getTypeAsString(), boolean.class.getName());
+        return buildGetterName(variable.getNameAsString(), logical);
     }
 
     private static String getOptionalFactoryMethodName(Type type) {

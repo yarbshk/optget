@@ -1,6 +1,7 @@
 package com.github.yarbshk.optget.apps.ref;
 
 import com.github.yarbshk.optget.annotation.OptionalGetter;
+import java.util.Optional;
 
 @OptionalGetter
 public class TargetDTO {
@@ -19,5 +20,13 @@ public class TargetDTO {
 
     public String getStr() {
         return str;
+    }
+
+    public Optional getObj() {
+        return Optional.ofNullable(obj);
+    }
+
+    public Optional isBool() {
+        return Optional.of(bool);
     }
 }

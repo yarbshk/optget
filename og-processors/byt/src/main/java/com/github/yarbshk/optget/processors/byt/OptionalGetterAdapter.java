@@ -1,13 +1,13 @@
 package com.github.yarbshk.optget.processors.byt;
 
 import com.github.yarbshk.optget.annotation.OptionalGetter;
-import org.apache.commons.lang3.StringUtils;
 import org.objectweb.asm.*;
 
 import java.lang.reflect.Field;
 import java.util.Objects;
 import java.util.Optional;
 
+import static com.github.yarbshk.optget.commons.ProcessorUtils.buildGetterName;
 import static org.objectweb.asm.Opcodes.*;
 
 public class OptionalGetterAdapter extends ClassVisitor {
@@ -65,9 +65,8 @@ public class OptionalGetterAdapter extends ClassVisitor {
     }
 
     private static String toGetterName(String name, String descriptor) {
-        String boolDesc = Type.getDescriptor(boolean.class);
-        String prefix = Objects.equals(descriptor, boolDesc) ? "is" : "get";
-        return prefix + StringUtils.capitalize(name);
+        boolean logical = Objects.equals(descriptor, Type.getDescriptor(boolean.class));
+        return buildGetterName(name, logical);
     }
 
     private static void convertPrimitiveToWrapperObject(MethodVisitor mv, String descriptor) {

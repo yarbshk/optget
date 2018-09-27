@@ -1,6 +1,6 @@
 package com.github.yarbshk.optget.apps.ast;
 
-import static com.github.yarbshk.optget.commons.LaunchUtils.listObjectFields;
+import static com.github.yarbshk.optget.commons.ReflectionUtils.listObjectFields;
 
 public class Application {
 
