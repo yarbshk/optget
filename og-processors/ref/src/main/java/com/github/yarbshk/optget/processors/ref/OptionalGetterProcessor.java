@@ -44,11 +44,16 @@ public class OptionalGetterProcessor extends AbstractProcessor {
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
         for (Element element : roundEnv.getElementsAnnotatedWith(OptionalGetter.class)) {
             for (Path sourceRoot : getSourceRoots()) {
-                SourceRoot sr = new SourceRoot(sourceRoot);
-                CompilationUnit cu = sr.parse(getPackageName(element), getSourceFileName(element));
-                cu.findAll(FieldDeclaration.class)
-                        .forEach(OptionalGetterProcessor::tryAddOptionalGetter);
-                sr.saveAll();
+                try {
+                    SourceRoot sr = new SourceRoot(sourceRoot);
+                    CompilationUnit cu = sr.parse(getPackageName(element), getSourceFileName(element));
+                    cu.findAll(FieldDeclaration.class)
+                            .forEach(OptionalGetterProcessor::tryAddOptionalGetter);
+                    sr.saveAll();
+                } catch (IllegalArgumentException e) {
+                    throw new RuntimeException("The OG_SRCPATH environment variable is not correct: " +
+                            System.getenv("OG_SRCPATH"), e);
+                }
             }
         }
         return true;

@@ -38,7 +38,7 @@ public class SampleGenerator extends AbstractProcessor {
             Map<String, String> values = getTemplateValues(element);
             try {
                 Writer writer = processingEnv.getFiler()
-                        .createSourceFile(values.get("className")) // Create DTO source file
+                        .createSourceFile(values.get("className")) // Generate a DTO source file
                         .openWriter();
                 writer.write(getSourceFileContent(values));
                 writer.close();
