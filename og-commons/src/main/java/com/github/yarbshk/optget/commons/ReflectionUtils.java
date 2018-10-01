@@ -8,7 +8,7 @@ import static com.github.yarbshk.optget.commons.ProcessorUtils.buildGetterName;
 
 public class ReflectionUtils {
 
-    public static void listObjectFields(Object object)
+    public static void printObjectFields(Object object)
             throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         Class<?> aClass = object.getClass();
         for (Field field : aClass.getDeclaredFields()) {

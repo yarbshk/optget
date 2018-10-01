@@ -55,7 +55,7 @@ public class OptionalGetterHandler extends JavacAnnotationHandler<OptionalGetter
 
     private static String getOptionalFactoryMethodName(Type type) {
         String factoryMethodName = type.isPrimitive() ? "of" : "ofNullable";
-        return String.format("java.util.Optional.%s", factoryMethodName);
+        return "java.util.Optional." + factoryMethodName;
     }
 
     private static boolean isMethodExist(JCMethodDecl method, JavacNode typeNode) {

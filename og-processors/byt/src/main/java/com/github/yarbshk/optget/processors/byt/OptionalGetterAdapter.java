@@ -16,7 +16,7 @@ public class OptionalGetterAdapter extends ClassVisitor {
     private boolean isAnnotationPresent;
 
     public OptionalGetterAdapter(ClassVisitor cv) {
-        super(ASM5, cv);
+        super(ASM6, cv);
     }
 
     @Override
@@ -36,12 +36,12 @@ public class OptionalGetterAdapter extends ClassVisitor {
     @Override
     public FieldVisitor visitField(int access, String name, String descriptor, String signature, Object value) {
         if (isAnnotationPresent) {
-            visitOptionalGetterMethod(name, descriptor);
+            tryAddOptionalGetter(name, descriptor);
         }
         return super.visitField(access, name, descriptor, signature, value);
     }
 
-    private void visitOptionalGetterMethod(String name, String descriptor) {
+    private void tryAddOptionalGetter(String name, String descriptor) { // TODO: add if doesn't exist
         String optionalDescriptor = Type.getDescriptor(Optional.class);
         // Declare a getter method
         String getterName = toGetterName(name, descriptor);

@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+for env_var in $(cat .env | xargs)
+do
+    export $env_var
+done
+
+sh gradlew --no-daemon -Dorg.gradle.debug=true clean build

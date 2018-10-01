@@ -1,4 +1,4 @@
-package com.github.yarbshk.optget.annotation;
+package com.github.yarbshk.optget.commons;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

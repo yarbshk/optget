@@ -1,19 +1,18 @@
 package com.github.yarbshk.optget.apps.smplref;
 
-import com.github.yarbshk.optget.annotation.GenerateSample;
+import com.github.yarbshk.optget.commons.SampleBuilder;
 
-import static com.github.yarbshk.optget.commons.ReflectionUtils.listObjectFields;
+import static com.github.yarbshk.optget.commons.ReflectionUtils.printObjectFields;
 
-@GenerateSample
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        TargetDTO targetDTO = new TargetDTO(new Object(), "Baz", false);
+    public static void main(String[] args) {
         try {
-            listObjectFields(targetDTO);
+            printObjectFields(SampleBuilder.of(Application.class));
         } catch (NoSuchMethodException e) {
-            // It needs a time to refactor source files therefore getter methods are not visible for the first time
             System.out.println("Getter methods are not generated yet. Please, run the app once more.");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

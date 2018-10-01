@@ -18,10 +18,10 @@ There are a few implementations of the processors called _processor types_:
 Run a standalone sample project JAR (the bash script populates just a set of environment variables for convenience):
 
 ```
-$ ./run <TYPE>
+$ ./scripts/run <TYPE>
 ```
 
-...where `<TYPE>` is meant one of the [processor types](#processor-types) (e.g. `$ ./run ast`).
+...where `<TYPE>` is meant one of the [processor types](#processor-types) (e.g. `$ ./scripts/run ast`).
 
 ## Troubleshooting
 * `java.lang.IllegalArgumentException: Only directories are allowed as root path: src/main/java` - provide an `OG_SRCPATH` environment variable to specify root directories of sets of source files separated by colons if many (e.g. `og-apps/sample-ref/src/main/java`).

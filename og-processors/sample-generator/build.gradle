@@ -1,0 +1,10 @@
+plugins {
+    id 'java-library'
+}
+
+dependencies {
+    implementation project(':og-annotation')
+    implementation project(':og-commons')
+    implementation 'commons-io:commons-io:2.6'
+    implementation 'org.apache.commons:commons-text:1.4'
+}

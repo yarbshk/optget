@@ -5,6 +5,7 @@ plugins {
 
 dependencies {
     annotationProcessor project(':og-processors:ast')
+    annotationProcessor project(':og-processors:sample-generator')
     implementation project(':og-annotation')
     implementation project(':og-commons')
 }
