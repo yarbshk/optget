@@ -24,7 +24,7 @@ import java.util.Set;
 /**
  * The project consists from the three sample projects (see the :og-apps module)
  * each of its needs a DTO to illustrate how a specific annotation processor works.
- * So {@link SampleGenerator} generates such DTOs for us automatically.
+ * The processor generates such DTOs for us automatically (except the :og-apps:sample-ref module).
  */
 @SupportedAnnotationTypes("com.github.yarbshk.optget.commons.GenerateSample")
 @SupportedSourceVersion(SourceVersion.RELEASE_8)

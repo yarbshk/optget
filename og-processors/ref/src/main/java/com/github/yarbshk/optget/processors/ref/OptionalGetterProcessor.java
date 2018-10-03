@@ -25,7 +25,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import static com.github.javaparser.ast.Modifier.PUBLIC;
-import static com.github.yarbshk.optget.commons.ProcessorUtils.buildGetterName;
+import static com.github.yarbshk.optget.commons.ProcessorUtils.makeGetterName;
 
 @SupportedAnnotationTypes("com.github.yarbshk.optget.annotation.OptionalGetter")
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
@@ -108,7 +108,7 @@ public class OptionalGetterProcessor extends AbstractProcessor {
 
     private static String toGetterName(VariableDeclarator variable) {
         boolean logical = Objects.equals(variable.getTypeAsString(), boolean.class.getName());
-        return buildGetterName(variable.getNameAsString(), logical);
+        return makeGetterName(variable.getNameAsString(), logical);
     }
 
     private static String getOptionalFactoryMethodName(Type type) {

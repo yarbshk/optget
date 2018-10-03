@@ -13,6 +13,7 @@ import java.io.InputStream;
 public class SampleBuilder {
 
     public static final String CLASS_NAME = "SampleDTO";
+    public static final String RESOURCE_EXT = ".json";
 
     private InputStream jsonInputStream;
     private String packageName;
@@ -44,7 +45,7 @@ public class SampleBuilder {
 
     public static Object of(Class<?> aClass) {
         return new SampleBuilder()
-                .setJsonInputStream(aClass.getClassLoader().getResourceAsStream(CLASS_NAME + ".json"))
+                .setJsonInputStream(aClass.getClassLoader().getResourceAsStream(CLASS_NAME + RESOURCE_EXT))
                 .setPackageName(aClass.getPackage().getName())
                 .build();
     }

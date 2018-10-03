@@ -6,14 +6,14 @@ import org.objectweb.asm.Type;
 import java.lang.reflect.Field;
 import java.util.Objects;
 
-import static com.github.yarbshk.optget.commons.ProcessorUtils.buildGetterName;
+import static com.github.yarbshk.optget.commons.ProcessorUtils.makeGetterName;
 import static org.objectweb.asm.Opcodes.INVOKESTATIC;
 
 public class VisitorUtils {
 
     public static String toGetterName(String name, String descriptor) {
         boolean logical = Objects.equals(descriptor, Type.getDescriptor(boolean.class));
-        return buildGetterName(name, logical);
+        return makeGetterName(name, logical);
     }
 
     public static String toFieldName(String getterName) {
